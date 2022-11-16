@@ -1,0 +1,19 @@
+.Articles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	border: 3px solid black;
+    flex: 0 1 auto;
+}
+
+.ArticleParent{
+    display: flex;
+    gap: 20px 20px;
+    flex-wrap: wrap;
+
+}
+
+.post{
+    cursor: pointer;
+}
