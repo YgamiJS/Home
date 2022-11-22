@@ -1,4 +1,4 @@
-const List = ({items , renderList , props}) => {
+const List = ({items , renderList , ...props}) => {
     return (
         <div {...props}>
             {items.map(renderList)}
