@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default class Servise {
-  static async getAll(limit, page) {
+  static async getAll(limit, page , url) {
     const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts",
+      url ,
       {
         params: {
           _limit: limit,

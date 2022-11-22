@@ -1,57 +1,56 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext } from "react";
-import { DataPosts , SetData } from "../../Context";
+import { useEffect, useState } from "react";
 import styled from "./Layout.module.scss";
-import { useState } from "react";
+import { getId } from "../../API/utils";
 
-export default function Layout() {
-
+export default function Layout({posts , setStateDataPost,  stateQuestions}) {
+//поиск работает что то  с appp fetchData
   const [isVisible , setIsVisible] = useState(false)
-  const posts = useContext(DataPosts);
+
+  const postsAndQuestions = [posts , stateQuestions];
   const [массивСоответствий , установитьМассивСоответствий ] = useState([]);
-  const data = useContext(SetData);
-  const dataPosts = useContext(DataPosts)
-
+  
   const postInfo = (event) => {
-    установитьМассивСоответствий(posts.filter(post => post.title.match(new RegExp(event.target.value , 'gmi'))));
 
-    if(массивСоответствий.length){
-      setIsVisible(true);
-    }
+    установитьМассивСоответствий(postsAndQuestions.flat().filter(post => post?.title?.match(new RegExp(event.target.value , 'gmi') || post?.name?.match(new RegExp(event.target.value , 'gmi')))));
+
+    массивСоответствий.length && setIsVisible(true);
   }
+
+  const View = (event) => !event.relatedTarget.closest("li") && setIsVisible(false); 
 
   return (
     <>
       <header>
-        <Link to="/">Lite</Link>
+        <Link to="/Home/">Lite</Link>
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/Home/">Home</Link>
             </li>
             <li>
-              <Link to="/articles">Articles</Link>
+              <Link to="/Home/articles">Articles</Link>
             </li>
             <li>
-              <Link to="">Questions & Anwers</Link>
+              <Link to="/Home/questions-anwers">Questions & Anwers</Link>
             </li>
-            <li>
+            <li onPointerOut={View}>
               <input onChange={postInfo} type="text" />
-              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => data({title: event.target.textContent , body: dataPosts.find(post => post.title === event.target.textContent).body.repeat(10)})}>{массивСоответствий.map(post => <Link key={post.id} to="/currentArticle">{post.title}</Link>)}</div>
+              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => setStateDataPost(getId(event))}>{массивСоответствий.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post.title}</Link>)}</div>
             </li>
           </ul>
         </nav>
       </header>
       <Outlet />
       <footer>
-        <Link to="/">Lite</Link>
+        <Link to="/Home/">Lite</Link>
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/Home/">Home</Link>
             </li>
             <li>
-              <Link to="/articles">Articles</Link>
+              <Link to="/Home/articles">Articles</Link>
             </li>
             <li>
               <Link to="">Questions & Anwers</Link>

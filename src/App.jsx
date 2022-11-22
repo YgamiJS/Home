@@ -1,56 +1,49 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Data, SetData, DataPosts, SetDataPosts } from "./Context";
+import useFecth from "./hook/useFecth";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Home/Home";
 import Articles from "./Components/Articles/Articles";
 import CurrentArticle from "./Components/Articles/currentArticle";
-import styled from "./App.module.scss";
-import { useEffect } from "react";
-import Servise from "./API/LoadData";
+import QuestionsAnwers from "./Components/Q&A/QuestionsAnwers";
+import "./App.module.scss";
+import Qa from "./Components/Q&A/qa";
 
 function App() {
-  const [state, setState] = useState({
-    title: "Page not found :(",
-    body: "Error , page not found",
-  });
-  const [posts, setPosts] = useState([]);
+  const [stateDataPost, setStateDataPost] = useState(); // key
+  const [posts, setPosts] = useFecth("https://jsonplaceholder.typicode.com/posts");
 
-  useEffect(() => {
-    let ignore = false;
+  const [stateQuestions, setStateQuestions] = useFecth("https://jsonplaceholder.typicode.com/comments");
 
-    const fetchingPost = async () => {
-      const response = await Servise.getAll();
-      setPosts(response.data);
-    };
+  useEffect(() => console.log(posts) , [])
 
-    !ignore && fetchingPost();
 
-    return () => {
-      ignore = true;
-    }
-  } , [])
+  const [stateQuestion, setStateQuestion] = useState();
 
   return (
-    <Data.Provider value={state}>
-      <SetData.Provider value={setState}>
-        <DataPosts.Provider value={posts}>
-          <SetDataPosts.Provider value={setPosts}>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route
-                  index
-                  element={<Home textH1={"string"} textPage={"string2"}></Home>}
-                ></Route>
-                <Route path="articles" element={<Articles />}></Route>
-                <Route path="currentArticle" element={<CurrentArticle />}></Route>
-                <Route path="*" element={null}></Route>
-              </Route>
-            </Routes>
-          </SetDataPosts.Provider>
-        </DataPosts.Provider>
-      </SetData.Provider>
-    </Data.Provider>
+    <Routes>
+      <Route path="/Home/" element={<Layout posts={posts} setStateDataPost={setStateDataPost} stateQuestions={stateQuestions}/>}>
+        <Route
+          index
+          element={
+            <Home
+              textH1={"Добро пожаловать в Lite!"}
+              textPage={
+                "Home - Сайт вопросов - ответов , а также статей и много другого. Здесь вы сможите задать интересующий вас вопрос и тут же получить ответ на него , также вы можете читать написанные статьи на интересующие вас темы и писать свои."
+              }
+            ></Home>
+          }
+        ></Route>
+        <Route path="/Home/articles" element={<Articles posts={posts} setPosts={setPosts}  setStateDataPost={ setStateDataPost}/>}></Route>
+        <Route path="/Home/currentArticle" element={<CurrentArticle posts={posts} stateDataPost={stateDataPost} />}></Route> //
+        <Route
+          path="/Home/questions-anwers" 
+          element={<QuestionsAnwers  stateQuestions={stateQuestions} setStateQuestions={setStateQuestions} setStateQuestion={setStateQuestion}/>}
+        ></Route>
+        <Route path="/Home/qa" element={<Qa stateQuestion={stateQuestion}  stateQuestions={stateQuestions}/>}></Route>
+        <Route path="/Home/*" element={<div>not found :(</div>}></Route>
+      </Route>
+    </Routes>
   );
 }
 

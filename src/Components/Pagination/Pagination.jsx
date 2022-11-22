@@ -3,7 +3,7 @@ import { getPageCount, getPagesArray } from "../../API/utils";
 import Servise from "../../API/LoadData";
 import styled from "./Pagination.module.scss";
 
-export default function Pagination({ posts, setPosts }) {
+export default function Pagination({ posts, setPosts , url }) {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -14,7 +14,7 @@ export default function Pagination({ posts, setPosts }) {
     let ignore = false;
 
     const fetchingPost = async () => {
-      const response = await Servise.getAll(limit, page);   
+      const response = await Servise.getAll(limit, page , url);   
       setPosts(response.data);
       const totalCount = response.headers["x-total-count"]; 
       setTotalPages(getPageCount(totalCount, limit)); 

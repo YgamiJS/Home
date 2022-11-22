@@ -1,14 +1,13 @@
-import { useContext } from "react";
-import { Data } from "../../Context.jsx";
+import { getElement } from "../../API/utils.jsx";
 
-export default function CurrentArticle(){
+export default function CurrentArticle({posts ,  stateDataPost}){
 
-    let data = useContext(Data);
+    const elem = getElement(posts , stateDataPost);
 
     return (
         <div>
-            <div>{data.title}</div>
-            <div>{data.body}</div>
+            {elem?.title}
+            {elem?.body}
         </div>
     )
 }
