@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "./Layout.module.scss";
 import { getId } from "../../API/utils";
 
@@ -8,16 +8,16 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
   const [isVisible , setIsVisible] = useState(false)
 
   const postsAndQuestions = [posts , stateQuestions];
-  const [массивСоответствий , установитьМассивСоответствий ] = useState([]);
+  const [ArrMatches , setArrMatces] = useState([]);
   
   const postInfo = (event) => {
 
-    установитьМассивСоответствий(postsAndQuestions.flat().filter(post => post?.title?.match(new RegExp(event.target.value , 'gmi') || post?.name?.match(new RegExp(event.target.value , 'gmi')))));
+    setArrMatces(postsAndQuestions.flat().filter(post => post?.title?.match(new RegExp(event.target.value , 'gmi') || post?.name?.match(new RegExp(event.target.value , 'gmi')))));
 
-    массивСоответствий.length && setIsVisible(true);
+    ArrMatches.length && setIsVisible(true);
   }
 
-  const View = (event) => !event.relatedTarget.closest("li") && setIsVisible(false); 
+  const View = () => setIsVisible(false);
 
   return (
     <>
@@ -34,14 +34,16 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
             <li>
               <Link to="/Home/questions-anwers">Questions & Anwers</Link>
             </li>
-            <li onPointerOut={View}>
+            <li>
               <input onChange={postInfo} type="text" />
-              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => setStateDataPost(getId(event))}>{массивСоответствий.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link>)}</div>
+              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => setStateDataPost(getId(event))}>{ArrMatches.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link>)}</div>
             </li>
           </ul>
         </nav>
       </header>
-      <Outlet />
+      <div onClick={View}>
+        <Outlet />
+      </div>
       <footer>
         <Link to="/Home/">Lite</Link>
         <nav>
