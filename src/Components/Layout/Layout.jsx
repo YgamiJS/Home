@@ -4,7 +4,7 @@ import styled from "./Layout.module.scss";
 import { getId } from "../../API/utils";
 
 export default function Layout({posts , setStateDataPost,  stateQuestions}) {
-//поиск работает что то  с appp fetchData
+
   const [isVisible , setIsVisible] = useState(false)
 
   const postsAndQuestions = [posts , stateQuestions];
@@ -36,7 +36,7 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
             </li>
             <li onPointerOut={View}>
               <input onChange={postInfo} type="text" />
-              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => setStateDataPost(getId(event))}>{массивСоответствий.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post.title}</Link>)}</div>
+              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => setStateDataPost(getId(event))}>{массивСоответствий.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link>)}</div>
             </li>
           </ul>
         </nav>
