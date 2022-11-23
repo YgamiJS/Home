@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import useFecth from "./hook/useFecth";
 import Layout from "./Components/Layout/Layout";
@@ -10,15 +10,11 @@ import "./App.module.scss";
 import Qa from "./Components/Q&A/qa";
 
 function App() {
-  const [stateDataPost, setStateDataPost] = useState(); // key
+  const [stateDataPost, setStateDataPost] = useState(""); // key
+  const [stateQuestion, setStateQuestion] = useState("");
+
   const [posts, setPosts] = useFecth("https://jsonplaceholder.typicode.com/posts");
-
   const [stateQuestions, setStateQuestions] = useFecth("https://jsonplaceholder.typicode.com/comments");
-
-  useEffect(() => console.log(posts) , [])
-
-
-  const [stateQuestion, setStateQuestion] = useState();
 
   return (
     <Routes>
@@ -40,7 +36,7 @@ function App() {
           path="/Home/questions-anwers" 
           element={<QuestionsAnwers  stateQuestions={stateQuestions} setStateQuestions={setStateQuestions} setStateQuestion={setStateQuestion}/>}
         ></Route>
-        <Route path="/Home/qa" element={<Qa stateQuestion={stateQuestion}  stateQuestions={stateQuestions}/>}></Route>
+        <Route path="/Home/qa" element={<Qa stateQuestion={stateQuestion} stateQuestions={stateQuestions}/>}></Route>
         <Route path="/Home/*" element={<div>not found :(</div>}></Route>
       </Route>
     </Routes>
