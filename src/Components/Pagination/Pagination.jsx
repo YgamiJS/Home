@@ -32,7 +32,7 @@ export default function Pagination({ posts, setPosts , url }) {
   };
 
   return (
-    <div>
+    <div className={styled.pagination}>
       {pagesArray.map((pageNumber) => (
         <button
           onClick={() => changePage(pageNumber)}

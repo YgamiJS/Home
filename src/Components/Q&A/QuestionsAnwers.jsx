@@ -10,7 +10,7 @@ export default function QuestionsAnwers ({stateQuestions ,  setStateQuestions , 
 
     return (
          <div>
-             <List onClick={setDataQuesion} items={stateQuestions} renderList={ (question) => <Link to="/Home/qa" id={question.id} key={question.id}>{question.name}</Link>} />
+             <List className={styled.posts} onClick={setDataQuesion} items={stateQuestions} renderList={ (question) => <Link to="/Home/qa" id={question.id} key={question.id} className={styled.post}>{question.name}</Link>} />
              <Pagination posts={stateQuestions} setPosts={setStateQuestions} url="https://jsonplaceholder.typicode.com/comments" />
          </div>
     )

@@ -1,3 +1,7 @@
+$BgColorBlackGrey: #1e232a;
+$BgColorGrey: #21262d;
+$ColorWhite: white;
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -23,6 +27,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	background-color: $BgColorGrey;
+	color: $ColorWhite;
+	overflow-y: hidden;
 	line-height: 1;
 	display: flex;
 	flex-direction: column;
@@ -48,9 +55,10 @@ table {
 
 header,
 footer{
+	background-color: $BgColorBlackGrey;
 	display: flex;
 	justify-content: center;
-	border: 3px solid black;
+	padding: 10px 0px;
 	nav{
 		display: flex;
 		ul{

@@ -1,8 +1,7 @@
 .Home{
     display: flex;
     flex-direction: column;
+    flex: 1 0 auto;
     align-items: center;
-	border: 3px solid black;
-    flex: 0 1 auto;
     text-align: center;
 }
