@@ -1,9 +1,10 @@
 import { Link , Outlet } from "react-router-dom";
+import List from "../List/List.jsx";
 import { useState } from "react";
 import styled from "./Layout.module.scss";
 import { getId } from "../../API/utils";
 import NavigationLink from "../UI/Link/Link.jsx";
-import "../../App.scss"
+import "../../App.scss";
 
 export default function Layout({posts , setStateDataPost,  stateQuestions}) {
 
@@ -31,7 +32,6 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
         <nav>
           <ul>
             <li>
-              {/* <NavigationLink className={({isActive}) => isActive ? styled.active : ""} to="/Home/">Home</NavigationLink> */}
               <NavigationLink link="/Home/" text="Home" />
             </li>
             <li>
@@ -42,7 +42,7 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
             </li>
             <li>
               <input onChange={postInfo} type="text" />
-              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => {setStateDataPost(getId(event)); View()}}>{ArrMatches.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link>)}</div>
+              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => {setStateDataPost(getId(event)); View()}}><List items={ArrMatches} renderList={post => <><Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link><br /></>} /></div>
             </li>
           </ul>
         </nav>
@@ -54,16 +54,15 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
         <Link to="/Home/">Lite</Link>
         <nav>
         <ul>
-        <li>
-              {/* <NavigationLink className={({isActive}) => isActive ? styled.active : ""} to="/Home/">Home</NavigationLink> */}
-              <NavigationLink link="/Home/" text="Home" />
-            </li>
-            <li>
-              <NavigationLink link="/Home/articles" text="Articles" />
-            </li>
-            <li>
-              <NavigationLink link="/Home/questions-anwers" text="Questions & Anwers" />
-            </li>
+          <li>
+            <NavigationLink link="/Home/" text="Home" />
+          </li>
+          <li>
+            <NavigationLink link="/Home/articles" text="Articles" />
+          </li>
+          <li>
+            <NavigationLink link="/Home/questions-anwers" text="Questions & Anwers" />
+          </li>
         </ul>
         </nav>
       </footer>
