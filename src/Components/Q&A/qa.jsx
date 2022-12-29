@@ -8,7 +8,9 @@ export default function Qa({stateQuestion , stateQuestions}){
         <div>
             {queston?.name} 
             {queston?.body}
-            -----
+            <br />
+            Ответы
+            <br />
             {queston?.body.repeat(3)}
         </div>
     )

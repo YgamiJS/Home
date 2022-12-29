@@ -1,18 +1,23 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link , Outlet } from "react-router-dom";
 import { useState } from "react";
 import styled from "./Layout.module.scss";
 import { getId } from "../../API/utils";
+import NavigationLink from "../UI/Link/Link.jsx";
+import "../../App.scss"
 
 export default function Layout({posts , setStateDataPost,  stateQuestions}) {
 
   const [isVisible , setIsVisible] = useState(false)
 
   const postsAndQuestions = [posts , stateQuestions];
+  
   const [ArrMatches , setArrMatces] = useState([]);
   
   const postInfo = (event) => {
 
-    setArrMatces(postsAndQuestions.flat().filter(post => post?.title?.match(new RegExp(event.target.value , 'gmi') || post?.name?.match(new RegExp(event.target.value , 'gmi')))));
+    const regexp = new RegExp(event.target.value , 'gi');
+
+    setArrMatces(postsAndQuestions.flat().filter(post => post?.title?.match(regexp) || post?.name?.match(regexp)));
 
     ArrMatches.length && setIsVisible(true);
   }
@@ -26,38 +31,40 @@ export default function Layout({posts , setStateDataPost,  stateQuestions}) {
         <nav>
           <ul>
             <li>
-              <Link to="/Home/">Home</Link>
+              {/* <NavigationLink className={({isActive}) => isActive ? styled.active : ""} to="/Home/">Home</NavigationLink> */}
+              <NavigationLink link="/Home/" text="Home" />
             </li>
             <li>
-              <Link to="/Home/articles">Articles</Link>
+              <NavigationLink link="/Home/articles" text="Articles" />
             </li>
             <li>
-              <Link to="/Home/questions-anwers">Questions & Anwers</Link>
+              <NavigationLink link="/Home/questions-anwers" text="Questions & Anwers" />
             </li>
             <li>
               <input onChange={postInfo} type="text" />
-              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => setStateDataPost(getId(event))}>{ArrMatches.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link>)}</div>
+              <div className={ isVisible ? styled.help__visible : styled.help} onClick={(event) => {setStateDataPost(getId(event)); View()}}>{ArrMatches.map(post => <Link id={post.id} key={post.id} to="/Home/currentArticle">{post?.title || post?.name}</Link>)}</div>
             </li>
           </ul>
         </nav>
       </header>
-      <div onClick={View}>
+      <div className="main" onClick={View}>
         <Outlet />
       </div>
       <footer>
         <Link to="/Home/">Lite</Link>
         <nav>
-          <ul>
-            <li>
-              <Link to="/Home/">Home</Link>
+        <ul>
+        <li>
+              {/* <NavigationLink className={({isActive}) => isActive ? styled.active : ""} to="/Home/">Home</NavigationLink> */}
+              <NavigationLink link="/Home/" text="Home" />
             </li>
             <li>
-              <Link to="/Home/articles">Articles</Link>
+              <NavigationLink link="/Home/articles" text="Articles" />
             </li>
             <li>
-              <Link to="">Questions & Anwers</Link>
+              <NavigationLink link="/Home/questions-anwers" text="Questions & Anwers" />
             </li>
-          </ul>
+        </ul>
         </nav>
       </footer>
     </>

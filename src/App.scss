@@ -1,0 +1,50 @@
+@import 'scss-reset/_reset.scss';
+
+$BgColorBlackGrey: #1e232a;
+$BgColorGrey: #21262d;
+$ColorWhite: white;
+
+#root{
+	display: flex;
+    flex-direction: column;
+    height: 105vh;
+}
+
+body {
+	background-color: $BgColorGrey;
+	color: $ColorWhite;
+	overflow-x: hidden;
+	line-height: 1;
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 105vh;
+}
+header,
+footer{
+	background-color: $BgColorBlackGrey;
+	display: flex;
+	justify-content: center;
+	padding: 10px 0px;
+	nav{
+		display: flex;
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			width: 80vw;
+			li{
+				a{
+					align-self: center;
+				}
+			}
+		}
+	}
+}
+.main{
+	flex-direction: column;
+    display: flex;
+	justify-content: center;
+    flex: 1 0 auto;
+    height: -webkit-fill-available;
+}

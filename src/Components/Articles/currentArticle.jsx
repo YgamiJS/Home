@@ -7,6 +7,7 @@ export default function CurrentArticle({posts ,  stateDataPost}){
     return (
         <div>
             {elem?.title}
+            <br />
             {elem?.body}
         </div>
     )

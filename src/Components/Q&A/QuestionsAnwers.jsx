@@ -3,6 +3,7 @@ import List from "../List/List";
 import Pagination from "../Pagination/Pagination"
 import { getId } from "../../API/utils";
 import styled from "./qa.module.scss";
+import { Card } from "../UI/Card/Card";
 
 export default function QuestionsAnwers ({stateQuestions ,  setStateQuestions , setStateQuestion}) {
 
@@ -10,7 +11,7 @@ export default function QuestionsAnwers ({stateQuestions ,  setStateQuestions , 
 
     return (
          <div>
-             <List className={styled.posts} onClick={setDataQuesion} items={stateQuestions} renderList={ (question) => <Link to="/Home/qa" id={question.id} key={question.id} className={styled.post}>{question.name}</Link>} />
+             <List className={styled.posts} onClick={setDataQuesion} items={stateQuestions} renderList={ (question) => <Card to="/Home/qa" title={question.name} id={question.id} key={question.id} />} />
              <Pagination posts={stateQuestions} setPosts={setStateQuestions} url="https://jsonplaceholder.typicode.com/comments" />
          </div>
     )

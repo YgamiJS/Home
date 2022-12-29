@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Servise from "../API/LoadData";
-import { getPagesArray } from "../API/utils";
 
 const useFecth = (url) => {
     const [state , setState] = useState([]);
