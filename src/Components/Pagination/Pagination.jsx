@@ -6,7 +6,7 @@ import styled from "./Pagination.module.scss";
 export default function Pagination({ posts, setPosts , url }) {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
 
   let pagesArray = getPagesArray(totalPages);
 

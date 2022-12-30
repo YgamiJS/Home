@@ -5,13 +5,13 @@ export default function Qa({stateQuestion , stateQuestions}){
     const queston = getElement(stateQuestions , stateQuestion);
 
     return (
-        <div>
-            {queston?.name} 
-            {queston?.body}
+        <div className="article">
+            <h1>{queston?.name}</h1> 
+            <div className="page">{queston?.body?.repeat(33)}.</div>
             <br />
-            Ответы
+            <h2>Ответы</h2>
             <br />
-            {queston?.body.repeat(3)}
+            <div className="page">{queston?.body.repeat(3)}.</div>
         </div>
     )
 }

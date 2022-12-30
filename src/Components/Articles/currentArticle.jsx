@@ -5,10 +5,12 @@ export default function CurrentArticle({posts ,  stateDataPost}){
     const elem = getElement(posts , stateDataPost);
 
     return (
-        <div>
-            {elem?.title}
+        <div className="article">
+            <h1>{elem?.title}</h1>
             <br />
-            {elem?.body}
+            <div className="page">
+                {elem?.body?.repeat(99)}.
+            </div>
         </div>
     )
 }

@@ -47,4 +47,27 @@ footer{
 	justify-content: center;
     flex: 1 0 auto;
     height: -webkit-fill-available;
+	margin: 40px 0;
+}
+
+.article{
+    max-width: 1280px;
+    padding: 0 20px;
+    margin: 0 auto;
+    h1{
+        font-size: 2.8em;
+        font-weight: 600;
+    }
+	h2{
+		font-size: 2.4em;
+		font-weight: 500;
+	}
+    .page{
+        text-align: justify;
+    }
+
+    h1,
+    .page::first-letter{
+        text-transform: uppercase;
+    }
 }
