@@ -1,11 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import styled from "./Link.module.scss";
 
-
-const NavigationLink = ({link , text , ...props}) => {
+const Link = ({ title, to, ...props }) => {
     return (
-        <NavLink {...props} className={({isActive}) => isActive ? styled.active : ""} to={link}>{text}</NavLink>
-    )
-}
+        <RouterLink className={styled.link} {...props} to={to}>
+            {title}
+        </RouterLink>
+    );
+};
 
-export default NavigationLink;
+export default Link;

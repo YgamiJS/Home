@@ -1,7 +1,10 @@
-export const getPageCount = (totalCount, limit) => Math.ceil(totalCount / limit)
+export const getPageCount = (totalCount, limit) =>
+    Math.ceil(totalCount / limit);
 
-export const getPagesArray = (totalPages) => Array.from({length: totalPages} , (_ , i) => i + 1);
+export const getPagesArray = (totalPages) =>
+    Array.from({ length: totalPages }, (_, i) => i + 1);
 
-export const getId = (event) => event.target.getAttribute("id");
+export const getId = (event) => event.target.id;
 
-export const getElement = (ArrData , KeyData) => ArrData.find(elem => elem.id == KeyData);
+export const getElement = (ArrData, KeyData) =>
+    ArrData.find((elem) => elem.id == KeyData);

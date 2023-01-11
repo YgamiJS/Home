@@ -1,73 +1,71 @@
-@import 'scss-reset/_reset.scss';
+@import "scss-reset/_reset.scss";
 
 $BgColorBlackGrey: #1e232a;
 $BgColorGrey: #21262d;
 $ColorWhite: white;
 
-#root{
-	display: flex;
+#root {
+    display: flex;
     flex-direction: column;
-    height: 105vh;
+    height: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url("./fonts/Roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url("./fonts/Roboto/Roboto-Regular.ttf");
 }
 
 body {
-	background-color: $BgColorGrey;
-	color: $ColorWhite;
-	overflow-x: hidden;
-	line-height: 1;
-	display: flex;
-	flex-direction: column;
-	width: 100vw;
-	height: 105vh;
-}
-header,
-footer{
-	background-color: $BgColorBlackGrey;
-	display: flex;
-	justify-content: center;
-	padding: 10px 0px;
-	nav{
-		display: flex;
-		ul{
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-around;
-			width: 80vw;
-			li{
-				a{
-					align-self: center;
-				}
-			}
-		}
-	}
-}
-.main{
-	flex-direction: column;
+    background-color: $BgColorGrey;
+    font-family: "Roboto-Regular";
+    color: $ColorWhite;
+    overflow-x: hidden;
+    line-height: 1;
     display: flex;
-	justify-content: center;
-    flex: 1 0 auto;
-    height: -webkit-fill-available;
-	margin: 40px 0;
+    flex-direction: column;
+    width: 100vw;
+    height: 105vh;
 }
 
-.article{
-    max-width: 1280px;
+.main {
+    flex: 1 0 auto;
+}
+
+.article {
     padding: 0 20px;
-    margin: 0 auto;
-    h1{
+
+    h1 {
         font-size: 2.8em;
         font-weight: 600;
     }
-	h2{
-		font-size: 2.4em;
-		font-weight: 500;
-	}
-    .page{
+
+    h2 {
+        font-size: 2.4em;
+        font-weight: 500;
+    }
+
+    .page {
         text-align: justify;
     }
 
     h1,
-    .page::first-letter{
+    .page::first-letter {
         text-transform: uppercase;
     }
+}
+
+._container {
+    max-width: 1200px;
+    padding: 15px 15px;
+    margin: 0 auto;
+    box-sizing: content-box;
 }

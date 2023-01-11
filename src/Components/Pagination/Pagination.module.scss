@@ -1,14 +1,14 @@
-.paginationButton{
+.paginationButton {
     background: white;
     padding: 10px 15px;
     border-radius: 50px;
 }
 
-.paginationButton__current{
+.paginationButton__current {
     border: 3px solid red;
 }
 
-.pagination{
+.pagination {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
