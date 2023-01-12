@@ -35,7 +35,6 @@ const New = ({ settings }) => {
             />
             <textarea
                 minLength={1}
-                maxLength={200}
                 name={settings.inputsName.body}
                 value={dataPost.body}
                 onChange={setData}
