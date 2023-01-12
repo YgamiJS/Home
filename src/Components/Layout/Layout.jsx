@@ -5,7 +5,6 @@ import styled from "./Layout.module.scss";
 import { getId } from "../../API/utils";
 import NavigationLink from "../UI/NavLink/Link.jsx";
 import { v4 as uuidv4 } from "uuid";
-import { isMobile } from "react-device-detect";
 import "../../App.scss";
 
 export default function Layout({ posts, setStateDataPost, stateQuestions }) {
@@ -51,7 +50,8 @@ export default function Layout({ posts, setStateDataPost, stateQuestions }) {
                                         : styled.navbar__wrapper
                                 }
                                 onClick={(e) =>
-                                    isMobile &&
+                                    window.matchMedia("(max-width: 767px)")
+                                        .matches &&
                                     !e.target.matches("input") &&
                                     setIsOpen(!isOpen)
                                 }
