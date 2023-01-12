@@ -130,7 +130,7 @@ export default function Layout({ posts, setStateDataPost, stateQuestions }) {
             <main className="main _container" onClick={View}>
                 <Outlet />
             </main>
-            <footer className={styled.footer}>
+            <footer className={isOpen ? styled.hidden : styled.footer}>
                 <div className={styled.footer__container + " _container"}>
                     <nav className={styled.navbar}>
                         <div
