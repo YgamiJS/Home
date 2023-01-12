@@ -50,6 +50,7 @@ export default function Layout({ posts, setStateDataPost, stateQuestions }) {
                                         : styled.navbar__wrapper
                                 }
                                 onClick={(e) =>
+                                    isOpen &&
                                     !e.target.matches("input") &&
                                     setIsOpen(!isOpen)
                                 }
