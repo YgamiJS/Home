@@ -1,49 +1,45 @@
-import { Link, Form } from "react-router-dom";
-import { useState } from "react";
-import styled from "./NewPost.module.scss";
+import Link from "../UI/Link/Link.jsx";
+import List from "../List/List";
+import Pagination from "../Pagination/Pagination";
+import { getId } from "../../API/utils";
+import styled from "./qa.module.scss";
+import { Card } from "../UI/Card/Card";
+import { v4 as uuidv4 } from "uuid";
 
-const New = ({ settings }) => {
-    const [dataPost, setDataPost] = useState(settings.objectPost);
-
-    const func = () => {
-        fetch(settings.urlFetch, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify(dataPost),
-        })
-            .then((response) => response.json())
-            .then((json) => settings.setData([json, ...settings.data]));
-    };
-
-    const setData = (event) => {
-        setDataPost({
-            ...dataPost,
-            [event.target.name]: event.target.value,
-        });
+export default function QuestionsAnwers({
+    stateQuestions,
+    setStateQuestions,
+    setStateQuestion,
+}) {
+    const setDataQuesion = (event) => {
+        if (event.target.classList.contains(styled.Wrapperposts)) return;
+        setStateQuestion(getId(event));
     };
 
     return (
-        <Form className={styled.form} action="#" method="post">
-            <input
-                minLength={1}
-                maxLength={40}
-                name={settings.inputsName.title}
-                value={dataPost.title}
-                onChange={setData}
+        <div className={styled.Wrapperposts}>
+            <Link to="/Home/newQuestion" title="Create a Question" />
+            <List
+                className={styled.posts}
+                onClick={setDataQuesion}
+                items={stateQuestions}
+                renderList={(question) => (
+                    <Card
+                        to="/Home/qa"
+                        title={question.name}
+                        id={question.id}
+                        key={uuidv4()}
+                    />
+                )}
             />
-            <textarea
-                minLength={1}
-                name={settings.inputsName.body}
-                value={dataPost.body}
-                onChange={setData}
+            <Pagination
+                posts={stateQuestions}
+                setPosts={setStateQuestions}
+                settings={{
+                    url: "https://jsonplaceholder.typicode.com/comments",
+                    limit: 40,
+                }}
             />
-            <Link to={"/Home/" + settings.urlLink} onClick={func}>
-                Add
-            </Link>
-        </Form>
+        </div>
     );
-};
-
-export default New;
+}
