@@ -11,3 +11,4 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=147&height=120&section=footer&animation=fadeIn&fontColor=fff&fontSize=12&fontAlign=50&fontAlignY=80&descSize=20&descAlign=84&descAlignY=43"/>
 </div>
 https://prod.liveshare.vsengsaas.visualstudio.com/join?A18FCA26F8419130A10C9C842BB9035CA661
+https://prod.liveshare.vsengsaas.visualstudio.com/join?28BCA97329E17A83DB4555066A809C0A60EC
